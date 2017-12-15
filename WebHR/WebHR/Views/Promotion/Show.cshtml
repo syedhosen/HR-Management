@@ -1,0 +1,73 @@
+﻿@model PagedList.IPagedList<WebHR.Models.Promotion>
+@using PagedList.Mvc;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Achievement";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View Achievement</title>
+</head>
+<body>
+    <div>
+        <h2>Promotion List</h2>
+
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <h2>Promotion List</h2>
+        @using (Html.BeginForm("Show", "Promotion", FormMethod.Get))
+        {
+            <p>
+                Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                <input type="submit" value="Search" />
+            </p>
+        }
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.ActionLink("Employee Name", "Show", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    Forward Application
+                </th>
+                <th>
+                    Promotion Title
+                </th>
+                <th>
+                    Promotion Date
+                </th>
+            </tr>
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PromotionFor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ForwardApplicationTo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PromotionTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PromotionDate)
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <br />
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Show",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+</body>
+</html>

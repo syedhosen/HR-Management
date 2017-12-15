@@ -1,0 +1,96 @@
+﻿@using System.Web.Optimization
+@model WebHR.Models.Transfer
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm("Create", "Transfer", FormMethod.Post, new { id = "Transferform" }))
+{
+    <h2>Create</h2>
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2>Transfer Information</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmployeeToTransfer, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.EmployeeToTransfer, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmployeeToTransfer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ForwardApplicationTo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ForwardApplicationTo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ForwardApplicationTo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.TransferDate, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TransferDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferToDepartment, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.TransferToDepartment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TransferToDepartment, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferToStation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.TransferToStation, new { @type = "date", htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TransferToStation, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Show")
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-1.9.1.js"></script>
+    <script src="~/Scripts/jquery-2.2.3.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#Transferform").validate({
+                rules: {
+                    EmployeeToTransfer: "required",
+                    ForwardApplicationTo: "required",
+                    TransferDate: "required",
+                    TransferToDepartment: "required",
+                    TransferToStation: "required"
+                },
+
+                messages: {
+                    EmployeeToTransfer: "Employee name is required..!",
+                    ForwardApplicationTo: "Employee name is required..!",
+                    TransferDate: "Transfer date is required..!",
+                    TransferToDepartment: "Department name is required..!",
+                    TransferToStation: "Station name is required..!"
+                }
+            });
+            validate.style.backgroundColor = "red";
+        });
+    </script>
+}
