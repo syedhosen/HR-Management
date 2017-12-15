@@ -25,6 +25,7 @@ namespace WebHR.Controllers
         }
 
         [HttpPost]
+        // Store Promotion information
         public ActionResult Create(Promotion promotion)
         {
             ViewBag.Msg = promotionManager.Save(promotion) > 0 ? "Saved Succesfully" : "Save Failed";

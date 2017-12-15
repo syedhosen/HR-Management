@@ -27,21 +27,6 @@ namespace WebHR.Controllers
         [HttpPost]
         public ActionResult Create(Achievement achievement)
         {
-           /* if (string.IsNullOrEmpty(achievement.EmployeeName))
-            {
-                ModelState.AddModelError("EmployeeName", "Employee name is required:...");
-            }
-
-            if (string.IsNullOrEmpty(achievement.ForwardApplicationTo))
-            {
-                ModelState.AddModelError("ForwardApplicationTo", "Employee name is required:...");
-            }
-
-            if (string.IsNullOrEmpty(achievement.AchievementTitle))
-            {
-                ModelState.AddModelError("AchievementTitle", "Achievement title is required:...");
-            }*/
-
             if (ModelState.IsValid)
             {
                 ViewBag.Msg = achievementManager.Save(achievement) > 0 ? "Saved Succesfully" : "Save Failed";

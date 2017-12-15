@@ -25,68 +25,9 @@ namespace WebHR.Controllers
         }
 
         [HttpPost]
+        // Store Employee information
         public ActionResult Create(Employee employee)
         {
-           /* if (string.IsNullOrEmpty(employee.CompanyName))
-            {
-                ModelState.AddModelError("ComapnyName", "Comapny name is required:...");
-            }
-
-            if (string.IsNullOrEmpty(employee.StationName))
-            {
-                ModelState.AddModelError("StationName", "Employee station name is required:...");
-            }
-
-            if (string.IsNullOrEmpty(employee.DepartmentName))
-            {
-                ModelState.AddModelError("DepartmentName", "Employee department name is required:...");
-            }
-
-            if (string.IsNullOrEmpty(employee.EmployeeType))
-            {
-                ModelState.AddModelError("EmployeeType", "Employee type is required:...");
-            }
-
-            if (string.IsNullOrEmpty(employee.EmployeeCategory))
-            {
-                ModelState.AddModelError("EmployeeCategory", "Employee category is required:...");
-            }
-
-            if (string.IsNullOrEmpty(employee.Designation))
-            {
-                ModelState.AddModelError("Designation", "Employee designation is required:...");
-            }
-
-            if (string.IsNullOrEmpty(employee.WorkShift))
-            {
-                ModelState.AddModelError("WorkShift", "Employee work shift is required:...");
-            }
-
-            if (string.IsNullOrEmpty(employee.Grade))
-            {
-                ModelState.AddModelError("Grade", "Employee grade is required:...");
-            }
-
-            if (string.IsNullOrEmpty(employee.FirstName))
-            {
-                ModelState.AddModelError("FirstName", "Employee first name is required:...");
-            }
-
-            if (string.IsNullOrEmpty(employee.LastName))
-            {
-                ModelState.AddModelError("LastName", "Employee last name is required:...");
-            }
-
-            if (string.IsNullOrEmpty(employee.Username))
-            {
-                ModelState.AddModelError("Username", "Employee username is required:...");
-            }
-
-            if (string.IsNullOrEmpty(employee.Password))
-            {
-                ModelState.AddModelError("Password", "Employee password is required:...");
-            }*/
-
             if (ModelState.IsValid)
             {
                 ViewBag.Msg = employeeManager.Save(employee) > 0 ? "Saved Succesfully" : "Save Failed";
@@ -96,11 +37,13 @@ namespace WebHR.Controllers
             
         }
 
+        // Employee data view
         public ViewResult Show(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
+            // Employee data search
             if (searchString != null)
             {
                 page = 1;

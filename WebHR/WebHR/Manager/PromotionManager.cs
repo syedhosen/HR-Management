@@ -9,6 +9,7 @@ namespace WebHR.Manager
 {
     public class PromotionManager : IPromotion
     {
+        
         PromotionGateway promotionGateway = new PromotionGateway();
 
         public int Save(Promotion promotion)
@@ -21,6 +22,7 @@ namespace WebHR.Manager
             return promotionGateway.GetAll();
         }
 
+        // Implementing IPromotion interface
         public void UpPromotion()
         {
             

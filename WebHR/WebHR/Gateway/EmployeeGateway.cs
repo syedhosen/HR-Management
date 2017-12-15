@@ -8,10 +8,12 @@ using WebHR.Models;
 
 namespace WebHR.Gateway
 {
-    public class EmployeeGateway : CommonGateway
+    
+    public class EmployeeGateway : CommonGateway // Using database connection
     {
         public int Save(Employee employee)
         {
+            // Storing employee data into database.
             Query = "INSERT INTO Employee(CompanyName,StationName,DepartmentName,EmployeeType,EmployeeCategory,Designation,WorkShift,Grade,FirstName,LastName,Username,Password)" +
                     " VALUES(@CompanyName,@StationName,@DepartmentName,@EmployeeType,@EmployeeCategory,@Designation,@WorkShift,@Grade,@FirstName,@LastName,@Username,@Password)";
             SqlCommand Command = new SqlCommand(Query, Connection);
@@ -61,6 +63,7 @@ namespace WebHR.Gateway
 
         public List<Employee> GetAll()
         {
+            // Fetching employee data from database.
             Query = "SELECT FirstName, LastName, CompanyName, StationName, DepartmentName, EmployeeType, EmployeeCategory, Designation, WorkShift, Grade FROM Employee";
             SqlCommand Command = new SqlCommand(Query, Connection);
             List<Employee> employeeList = new List<Employee>();

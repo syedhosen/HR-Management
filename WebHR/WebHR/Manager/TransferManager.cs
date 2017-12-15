@@ -20,6 +20,7 @@ namespace WebHR.Manager
             return transferGateway.GetAll();
         }
 
+        // Implementing ITransfer
         public void PermanentTransfer()
         {
             

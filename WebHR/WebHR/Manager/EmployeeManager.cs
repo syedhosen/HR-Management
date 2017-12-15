@@ -20,24 +20,26 @@ namespace WebHR.Manager
             return employeeGateway.GetAll();
         }
 
-        public enum EmployeeCategory
+        // Enamouration
+        public enum Category
         {
             Permanent,
             Contractual,
             Temporary
         }
 
-        public double CalculateBonus(double amount,EmployeeCategory employeeCategory)
+        public double CalculateBonus(double amount,Category category)
         {
-            if (employeeCategory == EmployeeCategory.Permanent)
+            // Enamouration value
+            if (category == Category.Permanent)
             {
                 amount = amount + amount*.5;
             }
-            else if (employeeCategory == EmployeeCategory.Contractual)
+            else if (category == Category.Contractual)
             {
                 amount = amount + amount*.3;
             }
-            else if (employeeCategory == EmployeeCategory.Temporary)
+            else if (category == Category.Temporary)
             {
                 amount = amount + amount*.2;
             }
